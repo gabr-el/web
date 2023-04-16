@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'MyHomePage.dart';
+import 'page/MyHomePage.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lime),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter App'),
+      home: const MyHomePage(title: 'Mercado'),
     );
   }
 }
