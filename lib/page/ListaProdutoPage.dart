@@ -17,82 +17,79 @@ class _ListaProdutoPage extends State<ListaProdutoPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => loadProdutos());
+    WidgetsBinding.instance.addPostFrameCallback((_) => loadProdutos());
   }
 
   void loadProdutos() async {
     lsProduto = await ProdutoWSClient().getAll();
-      setState(() {
-
-      });
-    // ProdutoWSClient().getAll().then((value) {
-    //   print("Ponto2");
-    //   lsProduto = value;
-    //   setState(() {
-    //
-    //   });
-    // });
-    print("Ponto1 ${lsProduto.length}");
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Lista de Produtos")),
-      body: Flex(
-        direction: Axis.vertical,
-        children: [
-          ElevatedButton(onPressed: addProdutoAction,
-              child: Icon(Icons.add)),
-          Expanded(child: ListView.builder(
-              padding: EdgeInsets.all(5),
-              itemCount: lsProduto.length,
-              itemBuilder: (context, index) {
-                return templateRowListView(index);
-              }
-          ))
-        ],
-      )
-    );
+        appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Text("Lista de Produtos")),
+        body: Flex(
+          direction: Axis.vertical,
+          children: [
+            Expanded(
+                child: ListView.builder(
+                    padding: EdgeInsets.all(5.0),
+                    itemCount: lsProduto.length,
+                    itemBuilder: (context, index) {
+                      return templateRowListView(index);
+                    }))
+          ],
+        ));
   }
 
   Widget templateRowListView(int index) {
     Produto produto = lsProduto[index];
     return Card(
-      elevation: 10,
-        child: InkWell(
-            onTap: () => editarProdutoAction(produto),
-            child: templateCellListView(produto))
-    );
+        elevation: 10,
+        child: InkWell(onTap: null, child: templateCellListView(produto)));
   }
-
 
   Widget templateCellListView(Produto produto) {
-    return Padding(padding: EdgeInsets.all(5.0),
-        child:Row(
+    return Padding(
+        padding: EdgeInsets.all(25.0),
+        child: Row(
           children: [
-           Text("${produto.id}"),
-           SizedBox(width: 50,),
-           Text(produto.nome!),
+            Text("${produto.id}"),
+            SizedBox(
+              width: 50,
+            ),
+            Text(produto.nome!),
+            SizedBox(
+              width: 50,
+            ),
+            Text("${produto.preco}"),
+            SizedBox(
+              width: 50,
+            ),
+            Text(produto.descricao!),
             Expanded(child: Text("")),
-            ElevatedButton(onPressed: addProdutoAction,
-                child: Icon(Icons.close, )),
+            Text("${produto.categoriaId}"),
+            SizedBox(
+              width: 50,
+            ),
             //Icon(Icons.navigate_next, color: Colors.orange,)
           ],
-        )
-    );
+        ));
   }
 
-  void addProdutoAction() {
+  /*void addProdutoAction() {
+  }*/
 
-  }
-  void editarProdutoAction(Produto produto) {
-    Navigator.push(context,
-      MaterialPageRoute( builder: (context) => ProdutoEditPage(produto: produto,)),
-    ).then((value) => {
-      loadProdutos()
-      //print("Produto Alterado ${value.nome!}")
-    });
-  }
+  /*void editarProdutoAction(Produto produto) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ProdutoEditPage(
+                produto: produto,
+              )),
+    ).then((value) => {loadProdutos()});
+  }*/
 }

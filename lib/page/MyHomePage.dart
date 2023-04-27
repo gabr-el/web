@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:web/page/DeletarProdutoPage.dart';
 import 'package:web/page/ListaProdutoPage.dart';
+import 'package:web/page/EditarProdutoPage.dart';
+import '../model/Produto.dart';
+import 'CadastrarProdutoPage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
   final String title;
 
   @override
@@ -11,6 +14,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  Produto produto = Produto();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,20 +29,27 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             OutlinedButton(
+              style: OutlinedButton.styleFrom(minimumSize: const Size(300, 50)),
               onPressed: cadastrarAction,
-              child: const Text('Cadastrar'),
+              child: const Text('Novo produto'),
             ),
+            const Padding(padding: EdgeInsets.all(16.0)),
             OutlinedButton(
+              style: OutlinedButton.styleFrom(minimumSize: const Size(300, 50)),
               onPressed: listarAction,
-              child: const Text('Listar'),
+              child: const Text('Listar produtos'),
             ),
+            const Padding(padding: EdgeInsets.all(16.0)),
             OutlinedButton(
-              onPressed: atualizarAction,
-              child: const Text('Atualizar'),
+              style: OutlinedButton.styleFrom(minimumSize: const Size(300, 50)),
+              onPressed: editarAction,
+              child: const Text('Editar produtos'),
             ),
+            const Padding(padding: EdgeInsets.all(16.0)),
             OutlinedButton(
+              style: OutlinedButton.styleFrom(minimumSize: const Size(300, 50)),
               onPressed: deletarAction,
-              child: const Text('Deletar'),
+              child: const Text('Deletar produtos'),
             ),
           ],
         ),
@@ -54,21 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
   void cadastrarAction() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ListaProdutoPage()),
+      MaterialPageRoute(builder: (context) => CadastrarProdutoPage(produto: produto,)),
     );
   }
 
   void deletarAction() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ListaProdutoPage()),
+      MaterialPageRoute(builder: (context) => DeletarProdutoPage(produto: produto,)),
     );
   }
 
-  void atualizarAction() {
+  void editarAction() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ListaProdutoPage()),
+      MaterialPageRoute(builder: (context) => const EditarProdutoPage()),
     );
   }
 }
