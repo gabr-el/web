@@ -79,17 +79,4 @@ class _ListaProdutoPage extends State<ListaProdutoPage> {
           ],
         ));
   }
-
-  /*void addProdutoAction() {
-  }*/
-
-  /*void editarProdutoAction(Produto produto) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => ProdutoEditPage(
-                produto: produto,
-              )),
-    ).then((value) => {loadProdutos()});
-  }*/
 }

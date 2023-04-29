@@ -8,7 +8,6 @@ class DeletarProdutoPage extends StatefulWidget {
   final Produto produto;
   DeletarProdutoPage({super.key, required this.produto});
 
-
   @override
   State<DeletarProdutoPage> createState() => _DeletarProdutoPage();
 }
@@ -84,7 +83,7 @@ class _DeletarProdutoPage extends State<DeletarProdutoPage> {
             width: 50,
           ),
           ElevatedButton(
-              onPressed: excluirAction,
+              onPressed: () => excluirAction(produto),
               child: const Icon(
                 Icons.close,
               )),
@@ -94,9 +93,9 @@ class _DeletarProdutoPage extends State<DeletarProdutoPage> {
     );
   }
 
-  void excluirAction() async{
-    bool result = await ProdutoWSClient().excluir(id: widget.produto.id!);
-    if (result) {
+  void excluirAction(Produto produto) async {
+    bool result = await ProdutoWSClient().excluir(id: produto.id!);
+    if (true) {
       loadProdutos();
     }
     print("Falha ao excluir Produto");

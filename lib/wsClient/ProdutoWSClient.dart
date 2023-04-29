@@ -53,13 +53,14 @@ class ProdutoWSClient {
     return false;
   }
 
-  excluir({required int id}) async{
-    var url = Uri.http("localhost:3000", '/produtos/$id');
-    var response = await http.delete(url);
-    if ((response.statusCode == 200) || (response.statusCode == 201)) {
-      return true;
-    } else {
-      print('Request failed with status: ${response.statusCode}.');
-    }
+  excluir({required int id}) async {
+  var url = Uri.http("localhost:3000", '/produtos/$id');
+  var response = await http.delete(url);
+  if ((response.statusCode == 200) || (response.statusCode == 201)) {
+    return true;
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
   }
+  return false;
+}
 }

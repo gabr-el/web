@@ -43,7 +43,7 @@ class Produto {
     _id = json['id'];
     _nome = json['nome'];
     _descricao = json['descricao'];
-    _preco = json['preco'];
+    _preco = json['valor'];
     _categoriaId = json['categoria_id'];
   }
 
